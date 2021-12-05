@@ -91,9 +91,39 @@ def shortest_path(source, target):
 
     If no possible path, returns None.
     """
+    # Fetch id of source and target actors
 
-    # TODO
-    raise NotImplementedError
+    # Initialize a frontier; Use Breadth First Search to find the shortest path
+    frontier = QueueFrontier()
+    frontier.add(Node(state=source, parent=None, action=None))
+
+    # Keep explored ids to avoid checking the same people and movies
+    explored = set()
+
+    while True:
+
+        if frontier.empty():
+            raise Exception("No solution")
+
+        node = frontier.remove()
+
+        if node.state == target:
+            path = []
+
+            while node.parent is not None:
+                path.append((node.action, node.state))
+                node = node.parent
+
+            path.reverse()
+            return path
+
+        explored.add((node.action, node.state))
+
+        for action, state in neighbors_for_person(node.state):
+            if not frontier.contains_state(state) and (action, state) not in explored:
+                child = Node(state=state, parent=node, action=action)
+                frontier.add(child)
+
 
 
 def person_id_for_name(name):
