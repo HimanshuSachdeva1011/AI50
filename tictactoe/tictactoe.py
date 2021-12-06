@@ -25,7 +25,7 @@ def player(board):
     """
     Xs = 0
     Os = 0
-    # simply iterate over the given board and calculate how many Xs and Os are there
+    #Iterate over the given board and calculate how many Xs and Os are there
     for y_axis in board:
         for x_axis in y_axis:
             if x_axis == X:
