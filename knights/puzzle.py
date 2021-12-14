@@ -38,7 +38,7 @@ knowledge1 = And(
     # Statement Mentioned Above as one is knight and other is knave and we are assured that one is knight
     # This is because the other one didn't say anything
     # It leaves other as knave
-    Biconditional(AKnight, And(AKnave, BKnight))
+    Biconditional(AKnight, And(AKnave, BKnave))
 )
 
 # Puzzle 2
@@ -46,18 +46,16 @@ knowledge1 = And(
 # B says "We are of different kinds."
 knowledge2 = And(
     
-    # Basic Code For Character That they can be either Knight And Knave 
+    # A and B are either knights or knaves
     Or(AKnave, AKnight),
     Or(BKnave, BKnight),
-    
-    # They can't be Both at the Same time
     Not(And(AKnave, AKnight)),
     Not(And(BKnave, BKnight)),
 
-    # Either Both of them are knaves
-    # Both of them are knaves
+    # A says "We are the same kind."
+    # B says "We are of different kinds."
     Biconditional(AKnight, Or(And(AKnave, BKnave), And(AKnight, BKnight))),
-    Biconditional(BKnight, Or(And(AKnave, BKnight), And(AKnight, BKnave)))
+    Biconditional(BKnight, Or(And(AKnave, BKnight), And(AKnight, BKnave))),
 )
 
 # Puzzle 3
